@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/philiprehberger/ts-sorted-array/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-sorted-array/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/sorted-array)](https://www.npmjs.com/package/@philiprehberger/sorted-array)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/github/license/philiprehberger/ts-sorted-array)](LICENSE)
 
 Sorted array with binary search — maintains order on insert.
 
