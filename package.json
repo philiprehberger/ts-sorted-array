@@ -1,6 +1,6 @@
 {
   "name": "@philiprehberger/sorted-array",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sorted array with binary search — maintains order on insert",
   "type": "module",
   "main": "./dist/index.cjs",
