@@ -34,6 +34,49 @@ desc.insert(2);
 console.log(desc.toArray()); // [3, 2, 1]
 ```
 
+### Reverse Iteration
+
+```ts
+const arr = sortedArray<number>();
+[3, 1, 5, 2, 4].forEach((n) => arr.insert(n));
+
+for (const value of arr.reversed()) {
+  console.log(value); // 5, 4, 3, 2, 1
+}
+```
+
+### Closest Value Lookup
+
+```ts
+const arr = sortedArray<number>();
+[1, 5, 10, 20].forEach((n) => arr.insert(n));
+
+console.log(arr.closest(6));  // 5
+console.log(arr.closest(15)); // 10
+console.log(arr.closest(25)); // 20
+```
+
+### Statistical Methods
+
+```ts
+const arr = sortedArray<number>();
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach((n) => arr.insert(n));
+
+console.log(arr.sum());           // 55
+console.log(arr.median());        // 5.5
+console.log(arr.percentile(90));  // 9
+```
+
+### Unique Filter
+
+```ts
+const arr = sortedArray<number>();
+[1, 2, 2, 3, 3, 3].forEach((n) => arr.insert(n));
+
+const uniq = arr.unique();
+console.log(uniq.toArray()); // [1, 2, 3]
+```
+
 ## API
 
 ### `sortedArray<T>(comparator?)`
@@ -48,6 +91,12 @@ Returns a `SortedArray<T>` with:
 - **`indexOf(value)`** — Get index of value, or `-1`
 - **`range(min, max)`** — Get all values between min and max (inclusive)
 - **`toArray()`** — Get a copy of the internal array
+- **`reversed()`** — Return an iterable for descending traversal
+- **`closest(value)`** — Find the nearest element using binary search
+- **`unique()`** — Return a new `SortedArray` with duplicates removed
+- **`median()`** — Median value (averages middle two for even-length arrays)
+- **`percentile(p)`** — Value at the given percentile (0-100)
+- **`sum()`** — Sum of all elements (numeric arrays)
 - **`length`** — Number of elements
 - **`first`** — First (smallest) element or `undefined`
 - **`last`** — Last (largest) element or `undefined`

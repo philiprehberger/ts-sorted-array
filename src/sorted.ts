@@ -5,6 +5,12 @@ export interface SortedArray<T> {
   indexOf(value: T): number;
   range(min: T, max: T): T[];
   toArray(): T[];
+  reversed(): Iterable<T>;
+  closest(value: T): T | undefined;
+  unique(): SortedArray<T>;
+  median(): T | undefined;
+  percentile(p: number): T | undefined;
+  sum(): number;
   readonly length: number;
   readonly first: T | undefined;
   readonly last: T | undefined;
@@ -69,6 +75,68 @@ export function sortedArray<T>(
 
     toArray(): T[] {
       return [...items];
+    },
+
+    reversed(): Iterable<T> {
+      return {
+        [Symbol.iterator](): Iterator<T> {
+          let i = items.length - 1;
+          return {
+            next(): IteratorResult<T> {
+              if (i >= 0) {
+                return { value: items[i--], done: false };
+              }
+              return { value: undefined as unknown as T, done: true };
+            },
+          };
+        },
+      };
+    },
+
+    closest(value: T): T | undefined {
+      if (items.length === 0) return undefined;
+      const idx = binarySearch(value);
+      if (idx >= items.length) return items[items.length - 1];
+      if (cmp(items[idx], value) === 0) return items[idx];
+      if (idx === 0) return items[0];
+      // Compare distance to idx and idx-1 using comparator magnitude
+      const diffLeft = Math.abs(
+        cmp(items[idx - 1], value),
+      );
+      const diffRight = Math.abs(cmp(items[idx], value));
+      return diffLeft <= diffRight ? items[idx - 1] : items[idx];
+    },
+
+    unique(): SortedArray<T> {
+      const result = sortedArray<T>(comparator);
+      for (let i = 0; i < items.length; i++) {
+        if (i === 0 || cmp(items[i], items[i - 1]) !== 0) {
+          result.insert(items[i]);
+        }
+      }
+      return result;
+    },
+
+    median(): T | undefined {
+      if (items.length === 0) return undefined;
+      const mid = Math.floor(items.length / 2);
+      if (items.length % 2 === 1) return items[mid];
+      return ((items[mid - 1] as unknown as number) +
+        (items[mid] as unknown as number)) / 2 as unknown as T;
+    },
+
+    percentile(p: number): T | undefined {
+      if (items.length === 0 || p < 0 || p > 100) return undefined;
+      const idx = Math.ceil((p / 100) * items.length) - 1;
+      return items[Math.max(0, idx)];
+    },
+
+    sum(): number {
+      let total = 0;
+      for (let i = 0; i < items.length; i++) {
+        total += items[i] as unknown as number;
+      }
+      return total;
     },
 
     get length(): number {

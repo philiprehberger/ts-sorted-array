@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Add reversed() for descending iteration
+- Add statistical methods: median(), percentile(), sum()
+- Add closest() for nearest-value binary search lookup
+- Add unique() for duplicate removal while maintaining sort order
+
 ## 0.1.2
 
 - Standardize README to 3-badge format with emoji Support section
