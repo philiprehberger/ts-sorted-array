@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Add `SortedArray#clear()` for in-place reset
+- README: add package card image
+
 ## 0.2.0
 
 - Add reversed() for descending iteration

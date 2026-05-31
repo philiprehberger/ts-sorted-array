@@ -199,4 +199,15 @@ describe('sortedArray', () => {
     const arr = sortedArray<number>();
     assert.strictEqual(arr.sum(), 0);
   });
+
+  it('should empty the array in place with clear()', () => {
+    const arr = sortedArray<number>();
+    [3, 1, 4, 1, 5, 9].forEach((n) => arr.insert(n));
+    arr.clear();
+    assert.strictEqual(arr.length, 0);
+    assert.deepStrictEqual(arr.toArray(), []);
+    assert.strictEqual(arr.first, undefined);
+    assert.strictEqual(arr.last, undefined);
+    assert.strictEqual(arr.has(3), false);
+  });
 });

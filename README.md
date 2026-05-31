@@ -4,6 +4,8 @@
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/sorted-array.svg)](https://www.npmjs.com/package/@philiprehberger/sorted-array)
 [![Last updated](https://img.shields.io/github/last-commit/philiprehberger/ts-sorted-array)](https://github.com/philiprehberger/ts-sorted-array/commits/main)
 
+![@philiprehberger/sorted-array](https://raw.githubusercontent.com/philiprehberger/ts-sorted-array/main/package-card.webp)
+
 Sorted array with binary search — maintains order on insert.
 
 ## Installation
@@ -77,6 +79,17 @@ const uniq = arr.unique();
 console.log(uniq.toArray()); // [1, 2, 3]
 ```
 
+### Clear
+
+```ts
+const arr = sortedArray<number>();
+[1, 2, 3].forEach((n) => arr.insert(n));
+
+arr.clear();
+console.log(arr.length);   // 0
+console.log(arr.toArray()); // []
+```
+
 ## API
 
 ### `sortedArray<T>(comparator?)`
@@ -97,6 +110,7 @@ Returns a `SortedArray<T>` with:
 - **`median()`** — Median value (averages middle two for even-length arrays)
 - **`percentile(p)`** — Value at the given percentile (0-100)
 - **`sum()`** — Sum of all elements (numeric arrays)
+- **`clear()`** — Empty the array in place
 - **`length`** — Number of elements
 - **`first`** — First (smallest) element or `undefined`
 - **`last`** — Last (largest) element or `undefined`

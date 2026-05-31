@@ -11,6 +11,7 @@ export interface SortedArray<T> {
   median(): T | undefined;
   percentile(p: number): T | undefined;
   sum(): number;
+  clear(): void;
   readonly length: number;
   readonly first: T | undefined;
   readonly last: T | undefined;
@@ -137,6 +138,10 @@ export function sortedArray<T>(
         total += items[i] as unknown as number;
       }
       return total;
+    },
+
+    clear(): void {
+      items.length = 0;
     },
 
     get length(): number {
